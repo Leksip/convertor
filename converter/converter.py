@@ -1,7 +1,17 @@
-print("=== Конвертер валют ===")
+from currency import get_conversion_rate
 
-from_currency = input("Из какой валюты? (например, USD): ").upper()
-to_currency = input("В какую валюту? (например, EUR): ").upper()
-amount = float(input("Сколько перевести?: "))
 
-print(f"Вы хотите перевести {amount} {from_currency} в {to_currency}")
+def convert_currency():
+    print("=== Конвертер валют ===")
+    from_currency = input("Из какой валюты? (например, USD): ").upper()
+    to_currency = input("В какую валюту? (Например, RUB): ").upper()
+
+    try:
+        result = get_conversion_rate(from_currency, to_currency)
+        print (f'1 {from_currency} = {result:.2f} {to_currency}')
+    except ValueError as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    convert_currency()
